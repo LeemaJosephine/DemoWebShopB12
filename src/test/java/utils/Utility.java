@@ -54,10 +54,20 @@ public class Utility {
 		String filePath="C:\\Users\\Digital Suppliers\\second-workspace\\DemoWebShopProject\\src\\test\\resources\\data\\testdata.properties";
 		FileInputStream file = new FileInputStream(filePath);
 		prop.load(file);
+		file.close();
 		
 		output = new FileOutputStream("C:\\Users\\Digital Suppliers\\second-workspace\\DemoWebShopProject\\src\\test\\resources\\data\\testOutputData.properties");
 		prop.store(output,"Validate message");
+		
 	}
+	
+	public static void propClose() throws IOException {
+		
+		output.close();
+	}
+	
+	
+	
 	
 	public static String[][] readExcel() throws IOException {
 		// Open the workbook

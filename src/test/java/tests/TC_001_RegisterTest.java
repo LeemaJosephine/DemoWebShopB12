@@ -27,6 +27,8 @@ public class TC_001_RegisterTest extends ProjectSpecificationMethods{
 		.clickContinue()
 		.valiadteLoginAndSignUp(prop.getProperty("validateMsg"));
 		
+		propClose();
+		
 		obj.closeBrowser();
 		
 	}
