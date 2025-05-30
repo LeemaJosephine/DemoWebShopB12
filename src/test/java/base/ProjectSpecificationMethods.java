@@ -1,14 +1,19 @@
 package base;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+
 import utils.Utility;
 
 public class ProjectSpecificationMethods extends Utility{
 	
-	public void browserLaunchAndUrlLoad(String browser,String url) {
+	@BeforeMethod
+	public void browserLaunchAndUrlLoad() {
 		
-		launchBrowserAndLoadUrl(browser,url);
+		launchBrowserAndLoadUrl(prop.getProperty("browser"),prop.getProperty("url"));
 	}
 	
+	@AfterMethod
 	public void closeBrowser() {
 		
 		browserClose();

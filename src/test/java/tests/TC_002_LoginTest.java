@@ -20,9 +20,7 @@ public class TC_002_LoginTest extends ProjectSpecificationMethods{
 	}
 	
 	public static void loginTest(String mailId, String password, String expectedMessage, String testType) throws IOException {
-		
-		ProjectSpecificationMethods obj = new ProjectSpecificationMethods();
-		obj.browserLaunchAndUrlLoad("chrome", "https://demowebshop.tricentis.com/");
+
 		
 		new HomePage(driver)
 		.clickLogin()

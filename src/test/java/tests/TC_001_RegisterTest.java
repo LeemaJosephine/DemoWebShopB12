@@ -2,18 +2,26 @@ package tests;
 
 import java.io.IOException;
 
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
 import base.ProjectSpecificationMethods;
 import pages.HomePage;
 
 public class TC_001_RegisterTest extends ProjectSpecificationMethods{
 
-	public static void main(String[] args) throws IOException {
+	@BeforeTest
+	public void setup() throws Exception {
+		
+		readAndWritePropFile();
+	}
+	
+	@Test(invocationCount = 4, threadPoolSize = 2)
+	public  void registerTest() throws IOException {  // test method
 		// TODO Auto-generated method stub
 
-		readAndWritePropFile();
-		
-		ProjectSpecificationMethods obj = new ProjectSpecificationMethods();
-		obj.browserLaunchAndUrlLoad(prop.getProperty("browser"), prop.getProperty("url"));
 		
 		HomePage obj1 = new HomePage(driver);
 		obj1.clickRegister()
@@ -27,10 +35,13 @@ public class TC_001_RegisterTest extends ProjectSpecificationMethods{
 		.clickContinue()
 		.valiadteLoginAndSignUp(prop.getProperty("validateMsg"));
 		
+		
+	}
+	
+	@AfterTest
+	public void setupClose() throws IOException {
+		
 		propClose();
-		
-		obj.closeBrowser();
-		
 	}
 
 }
