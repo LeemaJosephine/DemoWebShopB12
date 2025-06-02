@@ -3,25 +3,25 @@ package tests;
 import java.io.IOException;
 import java.util.List;
 
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
 import base.ProjectSpecificationMethods;
 import pages.HomePage;
 import utils.Utility;
 
 public class TC_002_LoginTest extends ProjectSpecificationMethods{
 
-	public static void main(String[] args) throws IOException {
+	@BeforeTest
+	public void setup() throws Exception {
 		
-		String[][] testData = readExcel();
-		
-		for(String[] row : testData) {
-			
-			loginTest(row[0], row[1], row[2], row[3]);
-		}
+		readAndWritePropFile();
+		sheetname="LoginData";
 	}
 	
-	public static void loginTest(String mailId, String password, String expectedMessage, String testType) throws IOException {
+	@Test(dataProvider = "readData")	
+	public void loginTest(String mailId, String password, String expectedMessage, String testType) throws IOException {
 
-		
 		new HomePage(driver)
 		.clickLogin()
 		.enterEmail(mailId)

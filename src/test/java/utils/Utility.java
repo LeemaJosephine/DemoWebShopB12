@@ -2,7 +2,6 @@ package utils;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
@@ -17,12 +16,15 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.GeckoDriverInfo;
 import org.openqa.selenium.firefox.GeckoDriverService;
+import org.testng.asserts.SoftAssert;
 
 public class Utility {
 
-	public static WebDriver driver;
+	public static WebDriver driver;  // remove static while performing parallel execution 
 	public static Properties prop = new Properties();
 	public static FileOutputStream output;
+	public static SoftAssert assertObj = new SoftAssert();
+	public String sheetname;
 	
 	public void launchBrowserAndLoadUrl(String browser, String url) {
 		
@@ -69,13 +71,13 @@ public class Utility {
 	
 	
 	
-	public static String[][] readExcel() throws IOException {
+	public static String[][] readExcel(String sheetname) throws IOException {
 		// Open the workbook
 				XSSFWorkbook book = new XSSFWorkbook("C:\\Users\\Digital Suppliers\\second-workspace\\DemoWebShopProject\\src\\test\\resources\\data\\LoginTestData.xlsx");
 				
 				// Open the sheet
 				
-				XSSFSheet sheet = book.getSheet("LoginData");
+				XSSFSheet sheet = book.getSheet(sheetname);
 				
 				// get the no.of rows
 				

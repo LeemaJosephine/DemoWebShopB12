@@ -20,7 +20,7 @@ public class AttributesExample {
 	@Test(groups= {"smoke testing"},invocationCount = 4, invocationTimeOut = 10, threadPoolSize = 2)
 	public void sigupTest() {
 		System.out.println("Sign up test");
-		Assert.assertTrue(false);
+		Assert.assertTrue(false);  // for test validation 
 		
 	}
 	

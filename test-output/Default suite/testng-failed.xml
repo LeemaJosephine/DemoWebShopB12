@@ -3,12 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="day31.AttributesExample">
+      <class name="tests.TC_002_LoginTest">
         <methods>
+          <include name="browserLaunchAndUrlLoad"/>
+          <include name="setup"/>
+          <include name="closeBrowser"/>
           <include name="loginTest"/>
-          <include name="sigupTest"/>
         </methods>
-      </class> <!-- day31.AttributesExample -->
+      </class> <!-- tests.TC_002_LoginTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

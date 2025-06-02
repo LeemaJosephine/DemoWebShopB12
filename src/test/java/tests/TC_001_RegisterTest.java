@@ -16,13 +16,13 @@ public class TC_001_RegisterTest extends ProjectSpecificationMethods{
 	public void setup() throws Exception {
 		
 		readAndWritePropFile();
+		sheetname="Register";
 	}
 	
-	@Test(invocationCount = 4, threadPoolSize = 2)
+	@Test
 	public  void registerTest() throws IOException {  // test method
 		// TODO Auto-generated method stub
 
-		
 		HomePage obj1 = new HomePage(driver);
 		obj1.clickRegister()
 		.choseGender(prop.getProperty("gender"))
@@ -34,6 +34,27 @@ public class TC_001_RegisterTest extends ProjectSpecificationMethods{
 		.clickSubmit()
 		.clickContinue()
 		.valiadteLoginAndSignUp(prop.getProperty("validateMsg"));
+		assertObj.assertAll();
+		
+		
+	}
+	
+	@Test
+	public  void registerTest1() throws IOException {  // test method
+		// TODO Auto-generated method stub
+
+		HomePage obj1 = new HomePage(driver);
+		obj1.clickRegister()
+		.choseGender(prop.getProperty("gender"))
+		.enterFirstName(prop.getProperty("fristname"))
+		.enterLastName(prop.getProperty("lastname"))
+		.enterEmail(prop.getProperty("email1"))
+		.enterPassword(prop.getProperty("password"))
+		.enterConpass(prop.getProperty("conpass"))
+		.clickSubmit()
+		.clickContinue()
+		.valiadteLoginAndSignUp(prop.getProperty("validateMsg1"));
+		assertObj.assertAll();
 		
 		
 	}

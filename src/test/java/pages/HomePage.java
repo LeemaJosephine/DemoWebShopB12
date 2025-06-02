@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 import base.ProjectSpecificationMethods;
 
@@ -27,22 +29,22 @@ public class HomePage extends ProjectSpecificationMethods{
 	
 	public RegisterPage clickRegister() {
 		
-		driver.findElement(By.className("ico-register")).click();
+		WebElement register = driver.findElement(By.className("ico-register"));
+		
+		//Assert.assertFalse(register.isDisplayed());
+		// Validating using soft assert 
+	
+		assertObj.assertFalse(register.isDisplayed());
+		
+		register.click();
 		return new RegisterPage(driver);
 	}
 	
 	public HomePage valiadteLoginAndSignUp(String expectedMessage) throws IOException {
 		
 		String actualText = driver.findElement(By.className("account")).getText();
-		prop.setProperty("message", actualText);
-		//output.close();
+		Assert.assertEquals(actualText, expectedMessage);
 		
-		if(expectedMessage.equals(actualText)) {
-			System.out.println("Register completed sucessfully");
-		} else {
-			
-			System.out.println("Validation failed");
-		}
 		return this;
 	}
 	
@@ -51,21 +53,12 @@ public class HomePage extends ProjectSpecificationMethods{
 		if(testType.equals("ValidEmailValidPassword")) {
 			
 			String actualText = driver.findElement(By.className("account")).getText();
-			if(expectedMessage.equals(actualText)) {
-				System.out.println("Login completed sucessfully");
-			} else {
-				
-				System.out.println("Validation failed");
-			} 
+			Assert.assertEquals(actualText, expectedMessage);
 					
 			}else if(testType.equals("InvalidEmailValidPassword") || testType.equals("ValidEmailInvalidPassword") || testType.equals("InvalidEmailInvalidPassword")) {
 				
 				String actualText = noUser.getText();
-				if(expectedMessage.equals(actualText)) {
-					System.out.println("Login faild with message " + actualText);
-				} else {
-					System.out.println("Application Failed");
-				}
+				Assert.assertEquals(actualText, expectedMessage);
 		}
 		
 	}
