@@ -1,15 +1,21 @@
 package utils;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.Properties;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -18,6 +24,9 @@ import org.openqa.selenium.firefox.GeckoDriverInfo;
 import org.openqa.selenium.firefox.GeckoDriverService;
 import org.testng.asserts.SoftAssert;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+
 public class Utility {
 
 	public static WebDriver driver;  // remove static while performing parallel execution 
@@ -25,6 +34,9 @@ public class Utility {
 	public static FileOutputStream output;
 	public static SoftAssert assertObj = new SoftAssert();
 	public String sheetname;
+	public static ExtentReports extent;
+	public String testName, testDescription, testAuthor, testCategory;
+	public static ExtentTest test;
 	
 	public void launchBrowserAndLoadUrl(String browser, String url) {
 		
@@ -117,6 +129,16 @@ public class Utility {
 
 				book.close();
 				return data;
+	}
+	
+	public static String screenShot(String name) throws IOException {
+		
+		String timestamp = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
+		String path="C:\\Users\\Digital Suppliers\\second-workspace\\DemoWebShopProject\\src\\test\\resources\\testOutput\\snaps\\"+name+timestamp+".png";
+		File src = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		File dest = new File(path);
+		FileUtils.copyFile(src, dest);
+		return path;
 	}
 	
 	

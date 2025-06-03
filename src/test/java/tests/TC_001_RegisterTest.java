@@ -17,6 +17,10 @@ public class TC_001_RegisterTest extends ProjectSpecificationMethods{
 		
 		readAndWritePropFile();
 		sheetname="Register";
+		testName="Register Test";
+		testDescription="Testing the register functionality of the application with valid and invalid details";
+		testAuthor="Leema Josephine";
+		testCategory="Smoke Testing";
 	}
 	
 	@Test
@@ -34,26 +38,6 @@ public class TC_001_RegisterTest extends ProjectSpecificationMethods{
 		.clickSubmit()
 		.clickContinue()
 		.valiadteLoginAndSignUp(prop.getProperty("validateMsg"));
-		assertObj.assertAll();
-		
-		
-	}
-	
-	@Test
-	public  void registerTest1() throws IOException {  // test method
-		// TODO Auto-generated method stub
-
-		HomePage obj1 = new HomePage(driver);
-		obj1.clickRegister()
-		.choseGender(prop.getProperty("gender"))
-		.enterFirstName(prop.getProperty("fristname"))
-		.enterLastName(prop.getProperty("lastname"))
-		.enterEmail(prop.getProperty("email1"))
-		.enterPassword(prop.getProperty("password"))
-		.enterConpass(prop.getProperty("conpass"))
-		.clickSubmit()
-		.clickContinue()
-		.valiadteLoginAndSignUp(prop.getProperty("validateMsg1"));
 		assertObj.assertAll();
 		
 		

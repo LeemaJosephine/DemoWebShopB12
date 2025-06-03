@@ -56,7 +56,7 @@ public class HomePage extends ProjectSpecificationMethods{
 			Assert.assertEquals(actualText, expectedMessage);
 					
 			}else if(testType.equals("InvalidEmailValidPassword") || testType.equals("ValidEmailInvalidPassword") || testType.equals("InvalidEmailInvalidPassword")) {
-				
+					
 				String actualText = noUser.getText();
 				Assert.assertEquals(actualText, expectedMessage);
 		}
